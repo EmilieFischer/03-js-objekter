@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="da">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>øvelse 7</title>
+    <style>
+      img {
+        display: block;
+        width: 400px;
+        object-fit: cover;
+        box-shadow: -8px 5px 16px -9px rgba(0, 0, 0, 0.55);
+        aspect-ratio: 16/9;
+      }
+      #liste {
+        max-width: 300px;
+        margin-bottom: 0.5rem;
+      }
+      h3 {
+        font-family: sofia-pro, system-ui, -apple-system, BlinkMacSystemFont,
+          Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif,
+          Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+        font-weight: 600;
+      }
+      p {
+        display: inline;
+        font-family: sofia-pro, system-ui, -apple-system, BlinkMacSystemFont,
+          Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif,
+          Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+        font-size: 0.8rem;
+        font-weight: 300;
+      }
+
+      .data-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        grid-gap: 5px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <section class="data-container"></section>
+    <template>
+      <article id="liste">
+        <img src="" alt="" />
+        <h3></h3>
+        <p class="instruktoer"></p>
+        <p class="land"></p>
+        <p class="varighed"></p>
+        <p class="årstal"></p>
+      </article>
+    </template>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", visListe);
+      let events = [
+        {
+          billede:
+            "https://odense-film-festival.s3.eu-central-1.amazonaws.com/media/W6dOqabNhHKBPXxxKKEZRA84-1280.jpg",
+          navn: "A Calling",
+          Instruktør: "Christian Bengtson",
+          land: "Danmark",
+          år: "2020",
+          varighed: "20 min",
+        },
+        {
+          billede:
+            "https://odense-film-festival.s3.eu-central-1.amazonaws.com/media/Q8K1pZrOs03Q0IrDkBwGVu5r.jpg",
+          navn: "A hole in my heart",
+          Instruktør: "Mees Peijnenburg",
+          land: "Holland",
+          år: "2015",
+          varighed: "9 min",
+        },
+        {
+          billede:
+            "https://odense-film-festival.s3.eu-central-1.amazonaws.com/media/9ZXEAY471UE4gFwHMXeRb17p.jpg",
+          navn: "A Summer Place",
+          Instruktør: "Alexandra Matheou",
+          land: "Grækenland, Frankrig",
+          år: "2021",
+          varighed: "21 min",
+        },
+        {
+          billede:
+            "https://odense-film-festival.s3.eu-central-1.amazonaws.com/media/Zdt2ODEqSVOkNe8nUaSSu8kd.jpg",
+          navn: "A Tower of Two",
+          Instruktør: "Jacob Krzysztof Glogowski",
+          land: "Danmark",
+          år: "2019",
+          varighed: "21 min",
+        },
+        {
+          billede:
+            "https://odense-film-festival.s3.eu-central-1.amazonaws.com/media/YF4qSrdeJdQYV3JNAvWZyKEi-720.jpg",
+          navn: "A View from Above",
+          Instruktør: "Dylan Werkman",
+          land: "Tyskland",
+          år: "2020",
+          varighed: "18 min",
+        },
+      ];
+      function visListe() {
+        const container = document.querySelector(".data-container");
+        const filmTemplate = document.querySelector("template");
+
+        events.forEach((film) => {
+          let klon = filmTemplate.cloneNode(true).content;
+          klon.querySelector("h3").textContent += film.navn;
+          klon.querySelector("img").src = film.billede;
+          klon.querySelector(".instruktoer").textContent +=
+            film.Instruktør + " | ";
+          klon.querySelector(".land").textContent += film.land + " | ";
+          klon.querySelector(".varighed").textContent += film.år + " | ";
+          klon.querySelector(".årstal").textContent += film.varighed;
+
+          container.appendChild(klon);
+        });
+      }
+
+      // const listeVisning = document.querySelector("article");
+      // dyr.forEach((dyr) => {
+      //   listeVisning.innerHTML += `<p>${dyr.navn} ${dyr.type} fra ${dyr.levested}</p>`;
+      // });
+
+      // console.log(dyr);
+      // console.log(
+      //   `navn: ${dyr.navn}, type: ${dyr.type}, billede: ${dyr.billede}, levested: ${dyr.levested}`
+      // );
+
+      // console.log(dyr);
+
+      // const destination = document.querySelector("article");
+      // const tekst = document.createElement("p");
+      // tekst.textContent = `navn: ${dyr.navn}, type: ${dyr.type}, levested: ${dyr.levested}`;
+      // destination.appendChild(tekst);
+
+      // const img = document.createElement("img");
+      // img.src = dyr.billede;
+      // destination.appendChild(img);
+    </script>
+  </body>
+</html>
