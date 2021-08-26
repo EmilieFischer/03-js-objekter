@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="da">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>øvelse 6</title>
+    <style>
+      #liste {
+        border: 0.1em solid black;
+        max-width: 300px;
+        margin-bottom: 0.5rem;
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <section class="data-container"></section>
+    <template>
+      <article id="liste">
+        <h3></h3>
+        <img src="" alt="" />
+        <p class="type">Type:</p>
+        <p class="levested">Levested:</p>
+      </article>
+    </template>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", visListe);
+      let dyr = [
+        {
+          navn: "gris",
+          type: "pattedyr",
+          billede: "http://mabe-kea.dk/E19/pics/pig.png",
+          levested: "svinefarm",
+        },
+        {
+          navn: "frø",
+          type: "amfibie",
+          billede: "http://mabe-kea.dk/E19/pics/frog.png",
+          levested: "søen",
+        },
+        {
+          navn: "ræv",
+          type: "pattedyr",
+          billede: "http://mabe-kea.dk/E19/pics/fox.png",
+          levested: "skoven",
+        },
+        {
+          navn: "sild",
+          type: "fisk",
+          billede: "http://mabe-kea.dk/E19/pics/sild.jpg",
+          levested: "vandet",
+        },
+        {
+          navn: "krokodille",
+          type: "krybdyr",
+          billede: "http://mabe-kea.dk/E19/pics/kroko.jpg",
+          levested: "floden",
+        },
+      ];
+      function visListe() {
+        const container = document.querySelector(".data-container");
+        const dyrTemplate = document.querySelector("template");
+
+        dyr.forEach((hvertDyr) => {
+          let klon = dyrTemplate.cloneNode(true).content;
+          klon.querySelector("h3").textContent += hvertDyr.navn;
+          klon.querySelector("img").src = hvertDyr.billede;
+          klon.querySelector(".type").textContent += hvertDyr.type;
+          klon.querySelector(".levested").textContent += hvertDyr.levested;
+          container.appendChild(klon);
+        });
+      }
+
+      // const listeVisning = document.querySelector("article");
+      // dyr.forEach((dyr) => {
+      //   listeVisning.innerHTML += `<p>${dyr.navn} ${dyr.type} fra ${dyr.levested}</p>`;
+      // });
+
+      // console.log(dyr);
+      // console.log(
+      //   `navn: ${dyr.navn}, type: ${dyr.type}, billede: ${dyr.billede}, levested: ${dyr.levested}`
+      // );
+
+      // console.log(dyr);
+
+      // const destination = document.querySelector("article");
+      // const tekst = document.createElement("p");
+      // tekst.textContent = `navn: ${dyr.navn}, type: ${dyr.type}, levested: ${dyr.levested}`;
+      // destination.appendChild(tekst);
+
+      // const img = document.createElement("img");
+      // img.src = dyr.billede;
+      // destination.appendChild(img);
+    </script>
+  </body>
+</html>
