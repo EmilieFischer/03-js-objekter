@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html lang="da">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Opret et dyreobjekt</title>
-</head>
-<body>
+  </head>
+  <body>
     <script>
-        let dyr = {
+      let dyr = {
         navn: "gris",
         type: "pattedyr",
         billede: "http://mabe-kea.dk/E19/pics/pig.png",
-        levested: "svinefarm"
-    };
+        levested: "svinefarm",
+      };
       console.log(dyr);
 
+      console.log(
+        `navn:${dyr.navn}, type:${dyr.type}, billede:${dyr.billede}, levested:${dyr.levested}`
+      );
     </script>
-</body>
+  </body>
 </html>
