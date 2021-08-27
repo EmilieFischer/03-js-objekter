@@ -11,19 +11,28 @@
         width: 400px;
         max-width: 100%;
         object-fit: cover;
-        box-shadow: -8px 5px 16px -9px rgba(0, 0, 0, 0.55);
         aspect-ratio: 16/9;
         margin-bottom: 2rem;
       }
 
       #liste {
-        border: 0.1em solid orange;
-        border-radius: 10%;
+        /* border: 0.1em solid orange;
+        border-radius: 10%; */
         max-width: 300px;
         margin-bottom: 0.5rem;
         text-align: center;
+        box-shadow: -8px 5px 16px -9px rgba(0, 0, 0, 0.55);
+
       }
       
+      h1 {
+        display: flex;
+        justify-content: center;
+        font-family: sofia-pro, system-ui, -apple-system, BlinkMacSystemFont,
+          Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif,
+          Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+      }
+
       h2 {
         font-family: sofia-pro, system-ui, -apple-system, BlinkMacSystemFont,
           Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif,
@@ -42,7 +51,7 @@
 
       .data-container {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         grid-gap: 5px;
         place-items: center;
       }
@@ -50,11 +59,15 @@
       #liste {
         height: 22rem;
       }
+
+    
     </style>
     </style>
   </head>
 
   <body>
+    <h1>Persongalleri</h1>
+
     <section class="data-container"></section>
     <template>
       <article id="liste">
@@ -88,12 +101,12 @@
       async function hentdata() {
         const response = await fetch(url, options);
         personer = await response.json();
-        visPersoner();
+        vis(personer);
       }
 
-      document.addEventListener("DOMContentLoaded", visPersoner);
+      document.addEventListener("DOMContentLoaded", personer);
 
-      function visPersoner() {
+      function vis(personer) {
         console.log(personer);
 
         personer.forEach((hverPerson) => {
