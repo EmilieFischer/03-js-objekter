@@ -29,8 +29,11 @@
     <script>
       "use strict";
       const fil = "dyr.json";
+      // async = med assykrone metoder kan man opdatere uden at skulle genloade al content (man opdaterer små dele af sin html ved async). Så kan der ellers foregår i ens script kan fortsætte, samtidig med at denne deal loades
       async function hentdata(fil) {
+        // fetch = måden vi linker til json-filen.
         const resultat = await fetch(fil);
+        //
         const json = await resultat.json();
         vis(json);
       }
