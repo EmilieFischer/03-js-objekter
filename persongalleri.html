@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="da">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Persongalleri</title>
+    <style>
+      img {
+        display: block;
+        width: 400px;
+        max-width: 100%;
+        object-fit: cover;
+        box-shadow: -8px 5px 16px -9px rgba(0, 0, 0, 0.55);
+        aspect-ratio: 16/9;
+        margin-bottom: 2rem;
+      }
+
+      #liste {
+        border: 0.1em solid orange;
+        border-radius: 10%;
+        max-width: 300px;
+        margin-bottom: 0.5rem;
+        text-align: center;
+      }
+      
+      h2 {
+        font-family: sofia-pro, system-ui, -apple-system, BlinkMacSystemFont,
+          Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif,
+          Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+        font-weight: 600;
+      }
+
+      p {
+        display: inline;
+        font-family: sofia-pro, system-ui, -apple-system, BlinkMacSystemFont,
+          Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif,
+          Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+        font-size: 0.8rem;
+        font-weight: 300;
+      }
+
+      .data-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        grid-gap: 5px;
+        place-items: center;
+      }
+
+      #liste {
+        height: 22rem;
+      }
+    </style>
+    </style>
+  </head>
+
+  <body>
+    <section class="data-container"></section>
+    <template>
+      <article id="liste">
+        <h2></h2>
+        <img src="" alt="" />
+        <p class="email">email:</p>
+        <p class="foedselsdag">Født:</p>
+        <p class="hobby">Hobby:</p>
+        <p class="titel">titel</p>
+        <p class="troende">troende:</p>
+      </article>
+    </template>
+
+    <script>
+      let personer;
+      let container;
+      let temp;
+
+      const url = "https://persongalleri-5d3e.restdb.io/rest/persongalleri";
+
+      const options = {
+        headers: {
+          "x-apikey": "600fe9211346a1524ff12e31",
+        },
+      };
+
+      container = document.querySelector("section");
+      temp = document.querySelector("template");
+      hentdata();
+
+      async function hentdata() {
+        const response = await fetch(url, options);
+        personer = await response.json();
+        visPersoner();
+      }
+
+      document.addEventListener("DOMContentLoaded", visPersoner);
+
+      function visPersoner() {
+        console.log(personer);
+
+        personer.forEach((hverPerson) => {
+          let klon = temp.cloneNode(true).content;
+          klon.querySelector("h2").textContent = hverPerson.fornavn;
+          klon.querySelector("img").src = "faces/" + hverPerson.billede;
+          klon.querySelector(".email").textContent += hverPerson.email;
+          klon.querySelector(".foedselsdag").textContent =
+            hverPerson.fødselsdag;
+          klon.querySelector(".hobby").textContent = hverPerson.hobby;
+          klon.querySelector(".titel").textContent = hverPerson.titel;
+          klon.querySelector(".troende").textContent = hverPerson.troende;
+
+          container.appendChild(klon);
+        });
+      }
+    </script>
+  </body>
+</html>
